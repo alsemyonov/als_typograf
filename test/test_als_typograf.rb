@@ -10,7 +10,7 @@ class TestAlsTypograf < Test::Unit::TestCase
   end
 
   context 'no p' do
-    setup { AlsTypograf.p!(false) }
+    setup { AlsTypograf.use_p = false }
     process_assertions({
       '- Это "Типограф"?' => "&#151; Это &laquo;Типограф&raquo;?",
     })

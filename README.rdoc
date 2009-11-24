@@ -1,6 +1,16 @@
-= als_typograf
+= AlsTypograf
 
-Description goes here.
+ruby-implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)
+
+* Typograf homepage: http://typograf.artlebedev.ru/
+* Web-service address: http://typograf.artlebedev.ru/webservices/typograf.asmx
+* WSDL-description: http://typograf.artlebedev.ru/webservices/typograf.asmx?WSDL
+
+Default charset: UTF-8
+
+Example:
+  require 'als_typograf'
+  puts AlsTypograf.process('"Вы все еще кое-как верстаете в "Ворде"? - Тогда мы идем к вам!"')
 
 == Note on Patches/Pull Requests
  
