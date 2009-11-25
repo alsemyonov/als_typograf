@@ -39,23 +39,19 @@ class ActiveRecord::Base
     unless respond_to?(:typograf_fields)
       cattr_accessor :typograf_fields
       self.typograf_fields = {}
+      before_validation :typograf_current_fields
+      include AlsTypograf::ActiveRecord
     end
 
-    case columns.first
-    when Hash
-      columns.first.each do |column, options|
-        self.typograf_fields[column.to_sym] = options
-      end
-    when Array, Symbol, String
-      options = columns.extract_options!
-      columns.each do |column|
-        self.typograf_fields[column.to_sym] = options
+    common_options = columns.extract_options!
+    if columns == [] # There was an columns_with_options variant
+      common_options.each do |column, custom_options|
+        typograf_fields[column.to_sym] = custom_options
       end
     else
-      raise "argument to typograf should be a Hash, Array, Symbol or String"
+      columns.each do |column|
+        typograf_fields[column.to_sym] = options
+      end
     end
-
-    before_validation :typograf_current_fields
-    include AlsTypograf::ActiveRecord
   end
 end
