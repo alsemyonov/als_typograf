@@ -53,3 +53,6 @@ rescue LoadError
     abort "YARD is not available. In order to run yardoc, you must: sudo gem install yard"
   end
 end
+
+desc 'Push release to github and gemcutter and install gem in the system'
+task :push => %w(release gemcutter:release install)
