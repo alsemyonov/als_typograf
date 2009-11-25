@@ -5,11 +5,10 @@ require 'pp'
 load_schema
 
 class Article < ActiveRecord::Base
-  validates_presence_of :title
   typograf(:content)
   typograf(:title => {:use_p => false, :use_br => false})
+  typograf(:skills, :achievements, :description, :use_br => false)
 end
-pp Article.typograf_fields
 
 class TestArticle < Test::Unit::TestCase
   def self.described_type; Article end
