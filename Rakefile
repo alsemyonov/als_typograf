@@ -14,7 +14,6 @@ begin
     gem.add_dependency 'httparty', '>= 0.4.5'
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     gem.add_development_dependency "yard", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
@@ -41,9 +40,30 @@ rescue LoadError
   end
 end
 
-task :test => :check_dependencies
+begin
+  require 'reek/adapters/rake_task'
+  Reek::RakeTask.new do |t|
+    t.fail_on_error = true
+    t.verbose = false
+    t.source_files = 'lib/**/*.rb'
+  end
+rescue LoadError
+  task :reek do
+    abort "Reek is not available. In order to run reek, you must: sudo gem install reek"
+  end
+end
 
-task :default => :test
+begin
+  require 'roodi'
+  require 'roodi_task'
+  RoodiTask.new do |t|
+    t.verbose = false
+  end
+rescue LoadError
+  task :roodi do
+    abort "Roodi is not available. In order to run roodi, you must: sudo gem install roodi"
+  end
+end
 
 begin
   require 'yard'
@@ -54,5 +74,7 @@ rescue LoadError
   end
 end
 
+task :test => :check_dependencies
+task :default => :test
 desc 'Push release to github and gemcutter and install gem in the system'
 task :push => %w(release gemcutter:release install)
