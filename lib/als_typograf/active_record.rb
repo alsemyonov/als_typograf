@@ -50,7 +50,7 @@ class ActiveRecord::Base
       end
     else
       columns.each do |column|
-        typograf_fields[column.to_sym] = options
+        typograf_fields[column.to_sym] = common_options
       end
     end
   end
