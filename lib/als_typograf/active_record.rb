@@ -51,6 +51,8 @@ class ActiveRecord::Base
       columns.each do |column|
         self.typograf_fields[column.to_sym] = options
       end
+    else
+      raise "argument to typograf should be a Hash, Array, Symbol or String"
     end
 
     before_validation :typograf_current_fields

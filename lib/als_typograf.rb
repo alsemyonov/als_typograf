@@ -2,6 +2,7 @@ $KCODE = 'u'
 
 require 'activesupport'
 require 'httparty'
+require 'als_typograf/request'
 
 # ruby-implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)
 # @author Alexander Semyonov
@@ -85,6 +86,8 @@ module AlsTypograf
       self[$1.to_sym] = args.first
     when /^(#{VALID_OPTIONS})$/
       self[method_name.to_sym]
+    else
+      super(method_name, *args)
     end
   end
 

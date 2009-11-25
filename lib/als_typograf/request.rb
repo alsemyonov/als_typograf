@@ -12,15 +12,12 @@ module AlsTypograf
     # @param [String] text text to process
     # @param [Hash] options options for web-service
     def process_text(text, options = {})
-      prepared_text = text.gsub(/&/, '&amp;').
-                           gsub(/</, '&lt;').
-                           gsub(/>/, '&gt;')
       soap_request = <<-END_SOAP
 <?xml version="1.0" encoding="#{options[:encoding]}" ?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 <soap:Body>
  <ProcessText xmlns="http://typograf.artlebedev.ru/webservices/">
-  <text>#{prepared_text}</text>
+  <text>#{text.gsub(/&/, '&amp;').gsub(/</, '&lt;').gsub(/>/, '&gt;')}</text>
      <entityType>#{options[:entity_type]}</entityType>
      <useBr>#{options[:use_br]}</useBr>
      <useP>#{options[:use_p]}</useP>
@@ -29,15 +26,10 @@ module AlsTypograf
  </soap:Body>
 </soap:Envelope>
       END_SOAP
-      response = self.class.post('/webservices/typograf.asmx',
-                                 :body => soap_request)
-      response['soap:Envelope']['soap:Body']['ProcessTextResponse']['ProcessTextResult'].
-        gsub(/&amp;/, '&').
-        gsub(/&lt;/, '<').
-        gsub(/&gt;/, '>').
-        gsub(/\t$/, '')
-    rescue
-      text
+      response = self.class.post('/webservices/typograf.asmx', :body => soap_request)
+      response['soap:Envelope']['soap:Body']['ProcessTextResponse']['ProcessTextResult'].gsub(/&amp;/, '&').gsub(/&lt;/, '<').gsub(/&gt;/, '>').gsub(/\t$/, '')
+    rescue ::Exception => e
+      return text
     end
   end
 end

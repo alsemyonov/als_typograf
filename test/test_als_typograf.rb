@@ -9,14 +9,14 @@ class TestAlsTypograf < Test::Unit::TestCase
   context 'with default configuration' do
     setup { AlsTypograf.default_options! }
     process_assertions({
-      '- Это "Типограф"?' => "<p>&#151; Это &laquo;Типограф&raquo;?</p>",
+      '- Это "Типограф"?' => "<p>— Это «Типограф»?</p>",
     })
   end
 
   context 'no p' do
     setup { AlsTypograf.use_p = false }
     process_assertions({
-      '- Это "Типограф"?' => "&#151; Это &laquo;Типограф&raquo;?",
+      '- Это "Типограф"?' => "— Это «Типограф»?",
     })
   end
 

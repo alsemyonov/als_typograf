@@ -23,15 +23,16 @@ class TestArticle < Test::Unit::TestCase
   context 'with an Article' do
     setup do
       @article = Article.create(:title => '- Does it "Article"?',
-                                :content => '- Yes, this is an "Article"...')
+                                :content => 'Yes, this is an "Article"...')
+      AlsTypograf.default_options!
     end
 
     should 'typograf article’s content with default options' do
-      assert_equal '<p>&#151; Yes, this is&nbsp;an&nbsp;&laquo;Article&raquo;&#133;</p>', @article.content
+      assert_equal '<p>Yes, this is an «Article»…</p>', @article.content
     end
 
     should 'typograf article’s title with custom options' do
-      assert_equal '&#151; Does it&nbsp;&laquo;Article&raquo;?', @article.title
+      assert_equal '— Does it «Article»?', @article.title
     end
   end
 end
