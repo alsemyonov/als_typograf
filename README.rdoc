@@ -12,8 +12,18 @@ Example:
   require 'als_typograf'
   puts AlsTypograf.process('"Вы все еще кое-как верстаете в "Ворде"? - Тогда мы идем к вам!"')
 
+  class Article < ActiveRecord::Base
+    typograf :title, :use_br => false, :use_p => false
+    typograf :content
+    typograf :skills, :achievements, :description, :encoding => 'UTF-16'
+    typograf :foo => {:use_br => false},
+             :bar => {:use_p => false},
+             :baz => {:entity_type => AlsTypograf::NO_ENTITIES}
+  end
+
+
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
