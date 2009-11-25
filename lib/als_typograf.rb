@@ -136,3 +136,7 @@ module AlsTypograf
     Request.new.process_text(text, custom_options.reverse_merge(options))
   end
 end
+
+if defined? ActiveRecord
+  require 'als_typograf/active_record'
+end

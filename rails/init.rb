@@ -1,0 +1,1 @@
+require 'als_typograf'

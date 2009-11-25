@@ -21,3 +21,5 @@ doc
 pkg
 
 ## PROJECT::SPECIFIC
+test/*.log
+test/*.db

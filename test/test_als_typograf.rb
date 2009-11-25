@@ -1,6 +1,10 @@
 require 'helper'
 
 class TestAlsTypograf < Test::Unit::TestCase
+
+  class Article < ActiveRecord::Base
+  end
+
   # TODO: need more tests or not?
   context 'with default configuration' do
     setup { AlsTypograf.default_options! }
@@ -15,4 +19,5 @@ class TestAlsTypograf < Test::Unit::TestCase
       '- Это "Типограф"?' => "&#151; Это &laquo;Типограф&raquo;?",
     })
   end
+
 end
