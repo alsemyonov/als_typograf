@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{als_typograf}
-  s.version = "0.0.4"
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexander Semyonov"]
@@ -31,8 +31,8 @@ Gem::Specification.new do |s|
      "test/database.yml",
      "test/helper.rb",
      "test/schema.rb",
-     "test/test_als_typograf.rb",
-     "test/test_article.rb"
+     "test/unit/als_typograf_test.rb",
+     "test/unit/article_test.rb"
   ]
   s.homepage = %q{http://github.com/rotuka/als_typograf}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -41,9 +41,9 @@ Gem::Specification.new do |s|
   s.summary = %q{ArtLebedevStudio.RemoteTypograf}
   s.test_files = [
     "test/helper.rb",
-     "test/test_als_typograf.rb",
      "test/schema.rb",
-     "test/test_article.rb"
+     "test/unit/als_typograf_test.rb",
+     "test/unit/article_test.rb"
   ]
 
   if s.respond_to? :specification_version then
