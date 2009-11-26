@@ -6,7 +6,7 @@ module AlsTypograf
       self.class.typograf_fields.each do |column, options|
         send(:"#{column}=",
              AlsTypograf.process(send(column).to_s,
-                                 options))
+                                 options)) if send(:"#{column}?") && send(:"#{column}_changed?")
       end
     end
   end

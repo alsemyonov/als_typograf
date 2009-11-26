@@ -1,6 +1,6 @@
 require 'helper'
-require 'als_typograf/active_record'
-require 'pp'
+require 'shoulda/active_record/matchers'
+require 'shoulda/active_record/macros'
 
 load_schema
 
@@ -10,11 +10,11 @@ class Article < ActiveRecord::Base
   typograf(:skills, :achievements, :description, :use_br => false)
 end
 
-class TestArticle < Test::Unit::TestCase
-  def self.described_type; Article end
+class ArticleTest < ActiveSupport::TestCase
+  extend Shoulda::ActiveRecord::Macros
 
   should_have_class_methods :typograf
-  should_have_instance_methods :typograf_fields
+  should_have_instance_methods :typograf_fields, :typograf_current_fields
 
   should 'load schema correctly' do
     assert_equal [], Article.all

@@ -1,10 +1,6 @@
 require 'helper'
 
-class TestAlsTypograf < Test::Unit::TestCase
-
-  class Article < ActiveRecord::Base
-  end
-
+class AlsTypografTest < ActiveSupport::TestCase
   # TODO: need more tests or not?
   context 'with default configuration' do
     setup { AlsTypograf.default_options! }

@@ -2,11 +2,13 @@ $KCODE = 'u'
 
 require 'activesupport'
 require 'httparty'
-require 'als_typograf/request'
 
 # ruby-implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)
 # @author Alexander Semyonov
 module AlsTypograf
+  autoload :Request, 'als_typograf/request'
+  autoload :ActiveRecord, 'als_typograf/active_record'
+
   HTML_ENTITIES = 1
   XML_ENTITIES = 2
   NO_ENTITIES = 3

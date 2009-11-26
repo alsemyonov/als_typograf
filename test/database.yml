@@ -1,10 +1,10 @@
 sqlite:
   :adapter: sqlite
-  :database: vendor/plugins/als_typograf/test/als_typograf_plugin.sqlite.db
+  :database: test/als_typograf_plugin.sqlite.db
 
 sqlite3:
   :adapter: sqlite3
-  :database: vendor/plugins/als_typograf/test/als_typograf_plugin.sqlite3.db
+  :database: test/als_typograf_plugin.sqlite3.db
 
 postgresql:
   :adapter: postgresql

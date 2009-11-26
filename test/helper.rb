@@ -1,27 +1,20 @@
-ENV['RAILS_ENV'] = 'test'
-ENV['RAILS_ROOT'] ||= File.join(File.dirname(__FILE__), '../../../..')
-
-require 'rubygems'
-require 'test/unit'
-require 'shoulda'
-require 'redgreen' rescue nil
-require File.expand_path(File.join(ENV['RAILS_ROOT'], 'config/environment.rb'))
-
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'als_typograf'
 
-class Test::Unit::TestCase
+require 'rubygems'
+require 'activerecord'
+require 'shoulda'
+require 'redgreen' rescue nil
+require 'als_typograf'
+require 'active_support/test_case'
+
+class ActiveSupport::TestCase
   def self.process_assertions(assertions)
     assertions.each do |from, to|
       should "process '#{from}' to '#{to}'" do
-        assert_equal to, process(from)
+        assert_equal to, AlsTypograf.process(from)
       end
     end
-  end
-
-  def process(text)
-    AlsTypograf.process(text)
   end
 end
 
@@ -34,7 +27,6 @@ def load_schema
   # no db passed, try one of these fine config-free DBs before bombing.
   db_adapter ||=
     begin
-      require 'rubygems'
       require 'sqlite'
         'sqlite'
     rescue MissingSourceFile
