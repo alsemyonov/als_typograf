@@ -102,7 +102,7 @@ module AlsTypograf
   # @option custom_options [String] :max_nobr (3) How many symbols around dash to surround with +<nobr>+ tag
   # @option custom_options [String] :encoding ('UTF-8') Encoding of text
   def self.process(text, custom_options = {})
-    Request.new.process_text(text, custom_options.reverse_merge(options))
+    Request.process_text(text, custom_options.reverse_merge(options))
   end
 end
 

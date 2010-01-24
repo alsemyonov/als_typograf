@@ -11,7 +11,6 @@ begin
     gem.homepage = 'http://github.com/rotuka/als_typograf'
     gem.authors = ['Alexander Semyonov']
     gem.add_dependency 'activesupport', '>= 2.3.4'
-    gem.add_dependency 'httparty', '>= 0.4.5'
     gem.add_development_dependency 'shoulda', '>= 0'
     gem.add_development_dependency 'yard', '>= 0'
   end
