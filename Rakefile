@@ -4,20 +4,20 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "als_typograf"
+    gem.name = 'als_typograf'
     gem.summary = %Q{ArtLebedevStudio.RemoteTypograf}
     gem.description = %Q{ruby-implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)}
-    gem.email = "rotuka@rotuka.com"
-    gem.homepage = "http://github.com/rotuka/als_typograf"
-    gem.authors = ["Alexander Semyonov"]
+    gem.email = 'rotuka@rotuka.com'
+    gem.homepage = 'http://github.com/rotuka/als_typograf'
+    gem.authors = ['Alexander Semyonov']
     gem.add_dependency 'activesupport', '>= 2.3.4'
     gem.add_dependency 'httparty', '>= 0.4.5'
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    gem.add_development_dependency "yard", ">= 0"
+    gem.add_development_dependency 'shoulda', '>= 0'
+    gem.add_development_dependency 'yard', '>= 0'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+  puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
 end
 
 require 'rake/testtask'
@@ -36,7 +36,7 @@ begin
   end
 rescue LoadError
   task :rcov do
-    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
+    abort 'RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov'
   end
 end
 
@@ -49,7 +49,7 @@ begin
   end
 rescue LoadError
   task :reek do
-    abort "Reek is not available. In order to run reek, you must: sudo gem install reek"
+    abort 'Reek is not available. In order to run reek, you must: sudo gem install reek'
   end
 end
 
@@ -61,7 +61,7 @@ begin
   end
 rescue LoadError
   task :roodi do
-    abort "Roodi is not available. In order to run roodi, you must: sudo gem install roodi"
+    abort 'Roodi is not available. In order to run roodi, you must: sudo gem install roodi'
   end
 end
 
@@ -70,7 +70,7 @@ begin
   YARD::Rake::YardocTask.new
 rescue LoadError
   task :yardoc do
-    abort "YARD is not available. In order to run yardoc, you must: sudo gem install yard"
+    abort 'YARD is not available. In order to run yardoc, you must: sudo gem install yard'
   end
 end
 

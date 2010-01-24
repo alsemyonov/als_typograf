@@ -2,7 +2,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'rubygems'
-require 'activerecord'
+require 'active_record'
 require 'shoulda'
 require 'redgreen' rescue nil
 require 'als_typograf'
@@ -11,8 +11,8 @@ require 'active_support/test_case'
 class ActiveSupport::TestCase
   def self.process_assertions(assertions)
     assertions.each do |from, to|
-      should "process '#{from}' to '#{to}'" do
-        assert_equal to, AlsTypograf.process(from)
+      should "process [#{from}] to [#{to}]" do
+        assert_equal(to, AlsTypograf.process(from))
       end
     end
   end
@@ -38,7 +38,7 @@ def load_schema
     end
 
   if db_adapter.nil?
-    raise "No DB Adapter selected. Pass the DB= option to pick one, or install Sqlite or Sqlite3."
+    raise 'No DB Adapter selected. Pass the DB= option to pick one, or install Sqlite or Sqlite3.'
   end
 
   ActiveRecord::Base.establish_connection(config[db_adapter])

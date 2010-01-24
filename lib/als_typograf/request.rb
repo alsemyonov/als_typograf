@@ -27,7 +27,8 @@ module AlsTypograf
 </soap:Envelope>
       END_SOAP
       response = self.class.post('/webservices/typograf.asmx', :body => soap_request)
-      response['soap:Envelope']['soap:Body']['ProcessTextResponse']['ProcessTextResult'].gsub(/&amp;/, '&').gsub(/&lt;/, '<').gsub(/&gt;/, '>').gsub(/\t$/, '')
+      result = response['soap:Envelope']['soap:Body']['ProcessTextResponse']['ProcessTextResult']
+      result.gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
     rescue ::Exception => exception
       return text
     end

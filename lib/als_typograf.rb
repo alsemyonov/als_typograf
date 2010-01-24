@@ -1,6 +1,6 @@
 $KCODE = 'u'
 
-require 'activesupport'
+require 'active_support'
 require 'httparty'
 
 # ruby-implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)
