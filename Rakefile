@@ -76,4 +76,4 @@ end
 task :test => :check_dependencies
 task :default => :test
 desc 'Push release to github and gemcutter and install gem in the system'
-task :push => %w(release gemcutter:release install)
+task :push => %w(git:release release install)
