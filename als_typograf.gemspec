@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{als_typograf}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexander Semyonov"]
-  s.date = %q{2010-01-24}
+  s.date = %q{2010-02-07}
   s.description = %q{ruby-implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)}
   s.email = %q{rotuka@rotuka.com}
   s.extra_rdoc_files = [
