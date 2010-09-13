@@ -105,6 +105,12 @@ module AlsTypograf
   end
 end
 
-if defined? ActiveRecord
-  require 'als_typograf/active_record'
+if defined? ActiveModel
+  require 'active_model/typograf'
+
+  if defined? ActiveRecord
+    class ActiveRecord::Base
+      extend ActiveModel::Typograf
+    end
+  end
 end

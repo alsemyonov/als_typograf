@@ -7,6 +7,7 @@ require 'shoulda'
 require 'redgreen' rescue nil
 require 'als_typograf'
 require 'active_support/test_case'
+require 'logger'
 
 class ActiveSupport::TestCase
   def self.process_assertions(assertions)

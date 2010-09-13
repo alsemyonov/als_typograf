@@ -13,8 +13,14 @@ end
 class ArticleTest < ActiveSupport::TestCase
   extend Shoulda::ActiveRecord::Macros
 
-  should_have_class_methods :typograf
-  should_have_instance_methods :typograf_fields, :typograf_current_fields
+  should "have class method #typograf" do
+    assert Article.respond_to?(:typograf)
+  end
+  %w(typograf_fields typograf_current_fields).each do |field|
+    should "have instance method \##{field}" do
+      assert Article.instance_methods.include?(field)
+    end
+  end
 
   should 'load schema correctly' do
     assert_equal [], Article.all
@@ -32,7 +38,7 @@ class ArticleTest < ActiveSupport::TestCase
     end
 
     should 'typograf article’s title with custom options' do
-      assert_equal "— Does it “Article”?", @article.title
+      assert_equal "— Does it «Article»?", @article.title
     end
   end
 end
