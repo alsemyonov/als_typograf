@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{als_typograf}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexander Semyonov"]
-  s.date = %q{2010-02-07}
+  s.date = %q{2010-09-13}
   s.description = %q{ruby-implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)}
   s.email = %q{rotuka@rotuka.com}
   s.extra_rdoc_files = [
@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "als_typograf.gemspec",
+     "lib/active_model/typograf.rb",
      "lib/als_typograf.rb",
-     "lib/als_typograf/active_record.rb",
      "lib/als_typograf/request.rb",
      "rails/init.rb",
      "test/database.yml",
@@ -37,20 +37,20 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/rotuka/als_typograf}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{ArtLebedevStudio.RemoteTypograf}
   s.test_files = [
-    "test/helper.rb",
-     "test/schema.rb",
-     "test/unit/als_typograf_test.rb",
-     "test/unit/article_test.rb"
+    "test/schema.rb",
+     "test/helper.rb",
+     "test/unit/article_test.rb",
+     "test/unit/als_typograf_test.rb"
   ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activesupport>, [">= 2.3.4"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
