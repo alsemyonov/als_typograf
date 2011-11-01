@@ -1,4 +1,4 @@
-$KCODE = 'u'
+$KCODE = 'u' if RUBY_VERSION < "1.9"
 
 require 'active_support'
 
