@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Als typograf by alsemyonov</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Als typograf</h1>
+        <p>ArtLebedevStudio.RemoteTypograf</p>
+
+        <p class="view"><a href="https://github.com/alsemyonov/als_typograf">View the Project on GitHub <small>alsemyonov/als_typograf</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/alsemyonov/als_typograf/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/alsemyonov/als_typograf/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/alsemyonov/als_typograf">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>AlsTypograf</h1>
+
+<p>Ruby implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)</p>
+
+<ul>
+<li>Typograf homepage: <a href="http://typograf.artlebedev.ru/">http://typograf.artlebedev.ru/</a>
+</li>
+<li>Web-service address: <a href="http://typograf.artlebedev.ru/webservices/typograf.asmx">http://typograf.artlebedev.ru/webservices/typograf.asmx</a>
+</li>
+<li>WSDL-description: <a href="http://typograf.artlebedev.ru/webservices/typograf.asmx?WSDL">http://typograf.artlebedev.ru/webservices/typograf.asmx?WSDL</a>
+</li>
+</ul><p>Default charset: UTF-8</p>
+
+<p>Example:
+  require 'als_typograf'
+  puts AlsTypograf.process('"Вы все еще кое-как верстаете в "Ворде"? - Тогда мы идем к вам!"')</p>
+
+<p>class Article &lt; ActiveRecord::Base
+    typograf :title, :use_br =&gt; false, :use_p =&gt; false
+    typograf :content
+    typograf :skills, :achievements, :description, :encoding =&gt; 'UTF-16'
+    typograf :foo =&gt; {:use_br =&gt; false},
+             :bar =&gt; {:use_p =&gt; false},
+             :baz =&gt; {:entity_type =&gt; AlsTypograf::NO_ENTITIES}
+  end</p>
+
+<h2>Note on Patches/Pull Requests</h2>
+
+<ul>
+<li>Fork the project.</li>
+<li>Make your feature addition or bug fix.</li>
+<li>Add tests for it. This is important so I don't break it in a
+future version unintentionally.</li>
+<li>Commit, do not mess with rakefile, version, or history.
+(if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)</li>
+<li>Send me a pull request. Bonus points for topic branches.</li>
+</ul><h2>Copyright</h2>
+
+<p>Copyright (c) 2009 Alexander Semyonov. See LICENSE for details.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/alsemyonov">alsemyonov</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-1497958-7");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
