@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'helper'
 require 'shoulda/active_record/matchers'
 require 'shoulda/active_record/macros'
