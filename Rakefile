@@ -1,54 +1,11 @@
-require 'rubygems'
-require 'rake'
+require 'bundler/gem_tasks'
 
 begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = 'als_typograf'
-    gem.summary = %Q{ArtLebedevStudio.RemoteTypograf}
-    gem.description = %Q{ruby-implementation of ArtLebedevStudio.RemoteTypograf class (web-service client)}
-    gem.email = 'rotuka@rotuka.com'
-    gem.homepage = 'http://github.com/rotuka/als_typograf'
-    gem.authors = ['Alexander Semyonov']
-    gem.add_dependency 'activesupport', '>= 2.3.4'
-    gem.add_development_dependency 'shoulda', '>= 0'
-    gem.add_development_dependency 'yard', '>= 0'
-  end
-  Jeweler::GemcutterTasks.new
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
 rescue LoadError
-  puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
-end
-
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/*_test.rb'
-  test.verbose = true
-end
-
-begin
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/*_test.rb'
-    test.verbose = true
-  end
-rescue LoadError
-  task :rcov do
-    abort 'RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov'
-  end
-end
-
-begin
-  require 'reek/adapters/rake_task'
-  Reek::RakeTask.new do |t|
-    t.fail_on_error = true
-    t.verbose = false
-    t.source_files = 'lib/**/*.rb'
-  end
-rescue LoadError
-  task :reek do
-    abort 'Reek is not available. In order to run reek, you must: sudo gem install reek'
+  task :spec do
+    abort 'RSpec is not available. In order to run specs, you must run: gem install rspec'
   end
 end
 
@@ -73,7 +30,4 @@ rescue LoadError
   end
 end
 
-task :test => :check_dependencies
-task :default => :test
-desc 'Push release to github and gemcutter and install gem in the system'
-task :push => %w(git:release release install)
+task :default => :spec
