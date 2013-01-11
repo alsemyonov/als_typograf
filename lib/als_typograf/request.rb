@@ -3,14 +3,14 @@ require 'net/http'
 module AlsTypograf
   # The request class
   module Request
-    @@url = URI.parse('http://typograf.artlebedev.ru/webservices/typograf.asmx')
-    @@result_regexp = /<ProcessTextResult>\s*((.|\n)*?)\s*<\/ProcessTextResult>/m
+    SERVICE_URL = URI.parse('http://typograf.artlebedev.ru/webservices/typograf.asmx')
+    RESULT_REGEXP = /<ProcessTextResult>\s*((.|\n)*?)\s*<\/ProcessTextResult>/
 
     # Process text with remote web-service
     # @param [String] text text to process
     # @param [Hash] options options for web-service
     def self.process_text(text, options = {})
-      request = Net::HTTP::Post.new(@@url.path, {
+      request = Net::HTTP::Post.new(SERVICE_URL.path, {
         'Content-Type' => 'text/xml',
         'SOAPAction' => '"http://typograf.artlebedev.ru/webservices/ProcessText"'
       })
@@ -29,13 +29,13 @@ module AlsTypograf
 </soap:Envelope>
 END_SOAP
 
-      response = Net::HTTP.new(@@url.host, @@url.port).start do |http|
+      response = Net::HTTP.new(SERVICE_URL.host, SERVICE_URL.port).start do |http|
         http.request(request)
       end
 
       case response
       when Net::HTTPSuccess
-        result = if @@result_regexp =~ response.body
+        if RESULT_REGEXP =~ response.body
           $1.gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
         else
           text
