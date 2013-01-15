@@ -45,4 +45,4 @@ Default charset is UTF-8
 
 ## Copyright
 
-© Alexander Semyonov, 2009-2012. See LICENSE for details.
+© Alexander Semyonov, 2009-2013. See LICENSE for details.
