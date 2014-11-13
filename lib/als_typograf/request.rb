@@ -33,16 +33,12 @@ module AlsTypograf
 </soap:Envelope>
       END_SOAP
 
-      response = Net::HTTP.new(SERVICE_URL.host, SERVICE_URL.port).start do |http|
-        http.request(request)
-      end
+      response = Net::HTTP.new(SERVICE_URL.host, SERVICE_URL.port).start { |http| http.request(request) }
 
       response.body.force_encoding(options[:encoding]) if response.body.respond_to?(:force_encoding)
 
-      if response.is_a?(Net::HTTPSuccess)
-        if RESULT_REGEXP =~ response.body
-          text = Regexp.last_match[1].gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
-        end
+      if response.is_a?(Net::HTTPSuccess) && RESULT_REGEXP =~ response.body
+        text = Regexp.last_match[1].gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
       end
 
       text.encode(options[:encoding])
