@@ -8,24 +8,26 @@ Ruby client for ArtLebedevStudio.RemoteTypograf Web Service.
 * [Documentation](http://rubydoc.info/gems/als_typograf)
 * [Issue Tracker](https://github.com/alsemyonov/als_typograf/issues)
 * [Wiki](https://github.com/alsemyonov/als_typograf/wiki)
-* [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/alsemyonov/als_typograf)
+* [![Code Climate](https://codeclimate.com/github/alsemyonov/als_typograf.png)](https://codeclimate.com/github/alsemyonov/als_typograf)
 * [![Build Status](https://travis-ci.org/alsemyonov/als_typograf.png?branch=master)](http://travis-ci.org/alsemyonov/als_typograf)
 
 ## Example
 
 Default charset is UTF-8
 
-    require 'als_typograf'
-    puts AlsTypograf.process('"Вы все еще кое-как верстаете в "Ворде"? - Тогда мы идем к вам!"')
+```ruby
+require 'als_typograf'
+puts AlsTypograf.process('"Вы все еще кое-как верстаете в "Ворде"? - Тогда мы идем к вам!"')
 
-    class Article < ActiveRecord::Base
-      typograf :title, :use_br => false, :use_p => false
-      typograf :content
-      typograf :skills, :achievements, :description, :encoding => 'UTF-16'
-      typograf :foo => {:use_br => false},
-               :bar => {:use_p => false},
-               :baz => {:entity_type => AlsTypograf::NO_ENTITIES}
-    end
+class Article < ActiveRecord::Base
+  typograf :title, use_br: false, use_p: false
+  typograf :content
+  typograf :skills, :achievements, :description, encoding: 'UTF-16'
+  typograf foo: {use_br: false},
+           bar: {use_p:  false},
+           baz: {entity_type: AlsTypograf::NO_ENTITIES}
+end
+```
 
 ## Note on Patches/Pull Requests
 
