@@ -8,7 +8,8 @@ Ruby client for ArtLebedevStudio.RemoteTypograf Web Service.
 * [Documentation](http://rubydoc.info/gems/als_typograf)
 * [Issue Tracker](https://github.com/alsemyonov/als_typograf/issues)
 * [Wiki](https://github.com/alsemyonov/als_typograf/wiki)
-* [![Code Climate](https://codeclimate.com/github/alsemyonov/als_typograf.png)](https://codeclimate.com/github/alsemyonov/als_typograf)
+* [![Code Climate](https://codeclimate.com/github/alsemyonov/als_typograf/badges/gpa.svg)](https://codeclimate.com/github/alsemyonov/als_typograf)
+* [![Test Coverage](https://codeclimate.com/github/alsemyonov/als_typograf/badges/coverage.svg)](https://codeclimate.com/github/alsemyonov/als_typograf)
 * [![Build Status](https://travis-ci.org/alsemyonov/als_typograf.png?branch=master)](http://travis-ci.org/alsemyonov/als_typograf)
 
 ## Example
