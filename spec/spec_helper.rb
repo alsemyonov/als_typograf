@@ -1,5 +1,8 @@
 SPEC_ROOT = File.expand_path('../..', __FILE__)
 require 'bundler/setup'
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
 require 'rspec'
 require 'rspec/its'
 require 'active_record'
