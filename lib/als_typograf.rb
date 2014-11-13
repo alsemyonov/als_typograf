@@ -30,14 +30,14 @@ module AlsTypograf
   # Get a global AlsTypograf option
   # @param [String, Symbol] param option name
   def self.[](param)
-    self.options[param.to_sym]
+    options[param.to_sym]
   end
 
   # Set a global AlsTypograf option
   # @param [String, Symbol] param option name
   # @param [Numeric, String] value value for the option
   def self.[]=(param, value)
-    self.options[param.to_sym] = value
+    options[param.to_sym] = value
   end
 
   # Reset default options
@@ -90,7 +90,7 @@ module AlsTypograf
   def self.method_missing(method_name, *args)
     case method_name.to_s
       when /^(#{VALID_OPTIONS})=$/
-        self[$1.to_sym] = args.first
+        self[Regexp.last_match[1].to_sym] = args.first
       when /^(#{VALID_OPTIONS})$/
         self[method_name.to_sym]
       else

@@ -16,7 +16,6 @@ module AlsTypograf
     def self.process_text(text, options = {})
       text = text.encode(options[:encoding])
 
-      #noinspection RubyStringKeysInHashInspection
       request = Net::HTTP::Post.new(SERVICE_URL.path, 'Content-Type' => 'text/xml', 'SOAPAction' => SOAP_ACTION)
 
       request.body = <<-END_SOAP
@@ -42,7 +41,7 @@ module AlsTypograf
 
       if response.is_a?(Net::HTTPSuccess)
         if RESULT_REGEXP =~ response.body
-          text = $1.gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
+          text = Regexp.last_match[1].gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
         end
       end
 
