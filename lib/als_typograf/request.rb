@@ -4,20 +4,20 @@ require 'net/http'
 module AlsTypograf
   # The request class
   module Request
-    SERVICE_URL   = URI.parse('http://typograf.artlebedev.ru/webservices/typograf.asmx')
+    SERVICE_URL = URI.parse('http://typograf.artlebedev.ru/webservices/typograf.asmx')
+    SOAP_ACTION = '"http://typograf.artlebedev.ru/webservices/ProcessText"'
+
     RESULT_REGEXP = /<ProcessTextResult>\s*((.|\n)*?)\s*<\/ProcessTextResult>/
 
     # Process text with remote web-service
     # @param [String] text text to process
     # @param [Hash] options options for web-service
+
     def self.process_text(text, options = {})
-      text    = text.encode(options[:encoding])
+      text = text.encode(options[:encoding])
 
       #noinspection RubyStringKeysInHashInspection
-      request = Net::HTTP::Post.new(SERVICE_URL.path, {
-        'Content-Type' => 'text/xml',
-        'SOAPAction'   => '"http://typograf.artlebedev.ru/webservices/ProcessText"'
-      })
+      request = Net::HTTP::Post.new(SERVICE_URL.path, 'Content-Type' => 'text/xml', 'SOAPAction' => SOAP_ACTION)
 
       request.body = <<-END_SOAP
 <?xml version="1.0" encoding="#{options[:encoding]}" ?>
@@ -40,16 +40,11 @@ module AlsTypograf
 
       response.body.force_encoding(options[:encoding]) if response.body.respond_to?(:force_encoding)
 
-      text = case response
-             when Net::HTTPSuccess
-               if RESULT_REGEXP =~ response.body
-                 $1.gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
-               else
-                 text
-               end
-             else
-               text
-             end
+      if response.is_a?(Net::HTTPSuccess)
+        if RESULT_REGEXP =~ response.body
+          text = $1.gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
+        end
+      end
 
       text.encode(options[:encoding])
     rescue StandardError => e

@@ -5,29 +5,22 @@ require 'active_model/typograf'
 describe ActiveModel::Typograf do
   class Article < ActiveRecord::Base
     typograf(:content)
-    typograf(:title => {:use_p => false, :use_br => false})
-    typograf(:skills, :achievements, :description, :use_br => false)
+    typograf(title: { use_p: false, use_br: false })
+    typograf(:skills, :achievements, :description, use_br: false)
   end
 
   subject { Article }
 
-  it 'have class method #typograf' do
-    Article.should respond_to(:typograf)
-  end
+  it('have class method #typograf') { expect(Article).to respond_to(:typograf) }
   %w(typograf_fields typograf_current_fields).each do |field|
-    it "have instance method \##{field}" do
-      Article.new.should respond_to(field)
-    end
+    it("have instance method \##{field}") { expect(Article.new).to respond_to(field) }
   end
 
-  it 'load schema correctly' do
-    Article.all.should == []
-  end
+  it('load schema correctly') { expect(Article.all).to eq([]) }
 
   context 'with an Article' do
     before do
-      @article = Article.create(:title => '- Does it "Article"?',
-                                :content => 'Да, это - "Статья"...')
+      @article = Article.create(title: '- Does it "Article"?', content: 'Да, это - "Статья"...')
       AlsTypograf.default_options!
     end
 

@@ -14,11 +14,11 @@ module AlsTypograf
 
   DEFAULT_OPTIONS = {
     entity_type: NO_ENTITIES,
-    use_br:      true,
-    use_p:       true,
-    max_nobr:    3,
-    encoding:    'UTF-8',
-    debug:       false
+    use_br: true,
+    use_p: true,
+    max_nobr: 3,
+    encoding: 'UTF-8',
+    debug: false
   }
   VALID_OPTIONS = DEFAULT_OPTIONS.keys.join('|')
 
@@ -89,12 +89,12 @@ module AlsTypograf
 
   def self.method_missing(method_name, *args)
     case method_name.to_s
-    when /^(#{VALID_OPTIONS})=$/
-      self[$1.to_sym] = args.first
-    when /^(#{VALID_OPTIONS})$/
-      self[method_name.to_sym]
-    else
-      super
+      when /^(#{VALID_OPTIONS})=$/
+        self[$1.to_sym] = args.first
+      when /^(#{VALID_OPTIONS})$/
+        self[method_name.to_sym]
+      else
+        super
     end
   end
 
@@ -119,12 +119,4 @@ module AlsTypograf
   end
 end
 
-if defined? ActiveModel
-  require 'active_model/typograf'
-
-  if defined? ActiveRecord
-    class ActiveRecord::Base
-      extend ActiveModel::Typograf
-    end
-  end
-end
+require 'active_model/typograf' if defined?(ActiveModel)

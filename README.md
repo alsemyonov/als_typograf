@@ -47,4 +47,4 @@ end
 
 ## Copyright
 
-© Alexander Semyonov, 2009-2013. See LICENSE for details.
+© Alexander Semyonov, 2009-2014. See LICENSE for details.
