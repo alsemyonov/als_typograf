@@ -89,12 +89,12 @@ module AlsTypograf
 
   def self.method_missing(method_name, *args)
     case method_name.to_s
-      when /^(#{VALID_OPTIONS})=$/
-        self[Regexp.last_match[1].to_sym] = args.first
-      when /^(#{VALID_OPTIONS})$/
-        self[method_name.to_sym]
-      else
-        super
+    when /^(#{VALID_OPTIONS})=$/
+      self[Regexp.last_match[1].to_sym] = args.first
+    when /^(#{VALID_OPTIONS})$/
+      self[method_name.to_sym]
+    else
+      super
     end
   end
 

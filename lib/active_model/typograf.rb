@@ -58,6 +58,4 @@ module ActiveModel
   end
 end
 
-if defined?(ActiveRecord)
-  ActiveRecord::Base.extend(ActiveModel::Typograf)
-end
+ActiveRecord::Base.extend(ActiveModel::Typograf) if defined?(ActiveRecord)

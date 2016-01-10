@@ -12,13 +12,11 @@ module AlsTypograf
     # Process text with remote web-service
     # @param [String] text text to process
     # @param [Hash] options options for web-service
-
+    # @return [String]
     def self.process_text(text, options = {})
       text = text.encode(options[:encoding])
 
-      request = Net::HTTP::Post.new(SERVICE_URL.path, 'Content-Type' => 'text/xml', 'SOAPAction' => SOAP_ACTION)
-
-      request.body = <<-END_SOAP
+      body = <<-END_SOAP
 <?xml version="1.0" encoding="#{options[:encoding]}" ?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 <soap:Body>
@@ -33,18 +31,21 @@ module AlsTypograf
 </soap:Envelope>
       END_SOAP
 
-      response = Net::HTTP.new(SERVICE_URL.host, SERVICE_URL.port).start { |http| http.request(request) }
-
-      response.body.force_encoding(options[:encoding]) if response.body.respond_to?(:force_encoding)
-
-      if response.is_a?(Net::HTTPSuccess) && RESULT_REGEXP =~ response.body
-        text = Regexp.last_match[1].gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '')
-      end
-
-      text.encode(options[:encoding])
+      make_request(body, options) || text
     rescue StandardError => e
       AlsTypograf.log_exception(e)
       text
+    end
+
+    def self.make_request(text, options)
+      request = Net::HTTP::Post.new(SERVICE_URL.path, 'Content-Type' => 'text/xml', 'SOAPAction' => SOAP_ACTION)
+      request.body = text
+      response = Net::HTTP.new(SERVICE_URL.host, SERVICE_URL.port).start { |http| http.request(request) }
+      return nil unless response.is_a?(Net::HTTPSuccess)
+      result = response.body
+      result.force_encoding(options[:encoding]) if result.respond_to?(:force_encoding)
+      result = Regexp.last_match[1].gsub(/&gt;/, '>').gsub(/&lt;/, '<').gsub(/&amp;/, '&').gsub(/(\t|\n)$/, '') if RESULT_REGEXP =~ result
+      result.encode(options[:encoding])
     end
   end
 end
