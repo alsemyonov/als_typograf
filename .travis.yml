@@ -1,6 +1,4 @@
 language: ruby
 rvm:
 - 1.9.3
-- 2.0.0
-- 2.1.4
-script: "CODECLIMATE_REPO_TOKEN=23f435a72ecad11f83f2ea0691be176dbb861d8a47de17f8b070c900786de6cf bundle exec rake"
+- 2.3.0

@@ -16,10 +16,14 @@ Gem::Specification.new do |s|
   s.executables = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = %w(lib)
 
-  s.add_runtime_dependency('activesupport', ['>= 2.3.4'])
-  s.add_development_dependency('activerecord', ['>= 2.3.4'])
+  s.add_runtime_dependency('activesupport', ['>= 4.1.11'])
+
+  s.add_development_dependency('activerecord')
   s.add_development_dependency('sqlite3')
   s.add_development_dependency('rspec')
   s.add_development_dependency('rspec-its')
   s.add_development_dependency('yard')
+  s.add_development_dependency('rake')
+  s.add_development_dependency('roodi')
+  s.add_development_dependency('codeclimate-test-reporter')
 end
